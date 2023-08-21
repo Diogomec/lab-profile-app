@@ -23,7 +23,7 @@ router.post("/signup", (req, res, next) => {
 
   User.findOne({ username })
   .then((foundUser) => {
-    if (foundUser) {
+    if(foundUser) {
       res.status(400).json({ message: "User already exists." });
       return;
     }
@@ -34,6 +34,7 @@ router.post("/signup", (req, res, next) => {
     return User.create({ username, password: hashedPassword, campus, course });
   })
   .then((createdUser) => {
+  
     const { username, campus, course, _id } = createdUser;
   
     const user = { username, campus, course, _id };
